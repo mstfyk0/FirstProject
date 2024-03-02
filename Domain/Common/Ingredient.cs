@@ -7,6 +7,6 @@ namespace Domain.Common
     public class Ingredient
     {
         public string Name { get; set; }
-        public string Weight { get; set; }
+        public int Weight { get; set; }
     }   
 }
