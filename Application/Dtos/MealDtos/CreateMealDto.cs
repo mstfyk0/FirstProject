@@ -1,6 +1,6 @@
 ﻿
 using Domain.Common;
-using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.Dtos.MealDtos
 {
@@ -14,7 +14,7 @@ namespace Application.Dtos.MealDtos
         public decimal Fat { get; init; }
         public List<Ingredient>? IngredientsList { get; init; }
         public string Recipe { get; init; }
-        public FormFile? Image { get; init; }
+        public IFormFile? Image { get; init; }
 
     }
 }

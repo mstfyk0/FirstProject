@@ -10,7 +10,7 @@ namespace Application.Interfaces
         Task<UserDto> GetUserByUsernameAsync(string username);
         Task<UserDto> AddUserAsync(RegisterDto userDto);
         Task<UserDto> ChangePasswordAsync(string username, string password);
-        Task<UserDto> ChangeEmailAsync(string username, string password);
-        Task<UserDto> DeleteUserAsync(string username);
+        Task<UserDto> ChangeEmailAsync(string username, string email);
+        Task DeleteUserAsync(string username);
     }
 }
