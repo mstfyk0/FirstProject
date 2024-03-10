@@ -2,7 +2,6 @@ using Domain.Additional;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Newtonsoft.Json;
-using SecondProject.Installers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -28,34 +27,35 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseHealthChecks("/health", new HealthCheckOptions
+void  ConfigureServices(IServiceCollection services)
 {
-    ResponseWriter = async (context, report) =>
+    app.UseHealthChecks("/health", new HealthCheckOptions
     {
-        context.Response.ContentType = "application/json";
-        var response = new HealthCheckResponse
+        ResponseWriter = async (context, report) =>
         {
-            Status = report.Status.ToString(),
-            HealthChecks = report.Entries.Select(x => new IndividualHealthCheckResponse
+            context.Response.ContentType = "application/json";
+            var response = new HealthCheckResponse
             {
-                Component = x.Key,
-                Status = x.Value.Status.ToString(),
-                Descriptino = x.Value.Description
+                Status = report.Status.ToString(),
+                HealthChecks = report.Entries.Select(x => new IndividualHealthCheckResponse
+                {
+                    Component = x.Key,
+                    Status = x.Value.Status.ToString(),
+                    Descriptino = x.Value.Description
 
 
-            }),
-            HealthChechDuration = report.TotalDuration
-        };
-        await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
-    }
-});
+                }),
+                HealthChechDuration = report.TotalDuration
+            };
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
+        }
+    });
 
-app.UseHealthChecks("/healthUI", new HealthCheckOptions
-{
-    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-});
-
-//app.MapHealthChecksUI();
+    app.UseHealthChecks("/healthUI", new HealthCheckOptions
+    {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+    });
+}
 app.UseResponseCaching();
 
 app.Run();

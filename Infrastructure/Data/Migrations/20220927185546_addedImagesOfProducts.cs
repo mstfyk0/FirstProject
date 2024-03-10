@@ -33,8 +33,8 @@ namespace Infrastructure.Data.Migrations
             {
                 migrationBuilder.DropColumn(
                     name: "productPhotoPath",
-                    table:"Products"
-                    )
+                    table: "Products"
+                    );
             }
             catch (Exception)
             {

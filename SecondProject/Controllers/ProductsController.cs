@@ -3,13 +3,11 @@ using Application.Interfaces;
 using Domain.Additional;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using SecondProject.Exceptions;
 using SecondProject.Filters;
 using SecondProject.Helpers;
 using SecondProject.Wrapper;
-using System.Reflection;
-using System.Web.Http.OData;
+using Microsoft.AspNetCore.OData.Query;
 namespace SecondProject.Controllers
 {
     [ApiController]

@@ -7,7 +7,7 @@ using SecondProject.Exceptions;
 using SecondProject.Filters;
 using SecondProject.Helpers;
 using SecondProject.Wrapper;
-using System.Web.Http.OData;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace SecondProject.Controllers
 {
